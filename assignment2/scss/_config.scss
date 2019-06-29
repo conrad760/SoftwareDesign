@@ -1,0 +1,19 @@
+$primary-color: lightblue;
+$dark-color: rgb(11, 11, 73);
+$light-color: white;
+$danger-color: darkred;
+$success-color: lightgreen;
+$max-width: 1100px;
+
+// Set Background and text color
+@function set-text-color($color) {
+    @if lightness($color) > 50 {
+        @return #333;
+    } @else {
+        @return #fff;
+    }
+}
+@mixin set-background($color) {
+    background-color: $color;
+    color: set-text-color($color);
+}
