@@ -1,9 +1,3 @@
-<<<<<<< HEAD
 {
     "mongoURI": "mongodb+srv://Admin:admin@cluster0-xprma.mongodb.net/test?retryWrites=true&w=majority"
 }
-=======
-{
-    "mongoURI": "mongodb+srv://Admin:Admin@cluster0-xprma.mongodb.net/test?retryWrites=true&w=majority"
-}
->>>>>>> abed49ad84a73d2721dc0098c9c666708724990a
