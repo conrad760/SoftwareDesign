@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const mongoose = require('mongoose');
 const config = require('config');
 const db = config.get('mongoURI');
@@ -14,3 +15,19 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
+=======
+const mongoose = require('mongoose');
+const confid = require('config');
+const db = config.get('mongoURI');
+
+const connectDB = async () => {
+    try {
+        await mongoose.connect(db);
+        console.log('MongoDB Connected!')
+    } catch (error) {
+       console.error(error.message);
+       // Exit process with failure 
+        process.exit(1);
+    }
+}
+>>>>>>> abed49ad84a73d2721dc0098c9c666708724990a

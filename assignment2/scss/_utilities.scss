@@ -23,6 +23,7 @@
     font-size: 1.5rem;
     margin-bottom: 1rem;
 }
+<<<<<<< HEAD
 
 .text-primary {
     color: $primary-color;
@@ -34,6 +35,16 @@
 
 
 // Backgrounds
+||||||| merged common ancestors
+//backgrounds
+=======
+
+.text-primary {
+    color: $primary-color;
+}
+
+// Backgrounds
+>>>>>>> conrad
 .bg {
     &-primary {
         @include set-background($primary-color);
@@ -96,6 +107,7 @@
             background: lighten($danger-color, 5%);
         }
     }
+<<<<<<< HEAD
     &:hover {
         background: lighten($dark-color, $amount: 20%);
         color: #fff;
@@ -104,7 +116,42 @@
 
 // Alerts
 
-.alert { 
+.alert {
+    padding: 0.8rem;
+    margin: 1rem;
+    opacity: 0.9;
+    background: $light-color;
+    color: #333;
+
+    &.alert-primary {
+        @include set-background($primary-color)
+    }
+    &.alert-dark {
+        @include set-background($dark-color)
+    }
+    &.alert-success {
+        @include set-background($success-color)
+    }
+    &.alert-danger {
+        @include set-background($danger-color)
+    }
+||||||| merged common ancestors
+=======
+    &:hover {
+        background: lighten($dark-color, $amount: 20%);
+        color: #fff;
+    }
+>>>>>>> conrad
+}
+<<<<<<< HEAD
+
+
+||||||| merged common ancestors
+=======
+
+// Alerts
+
+.alert {
     padding: 0.8rem;
     margin: 1rem;
     opacity: 0.9;
@@ -126,6 +173,7 @@
 }
 
 
+>>>>>>> conrad
 .dark-overlay {
     height: 100%;
     width: 100%;
@@ -133,6 +181,7 @@
     top: 0;
     left: 0;
     background-color: rgba($color: #000000, $alpha: 0.5);
+<<<<<<< HEAD
 }
 
 .table {
@@ -142,3 +191,8 @@
     text-align: left;
   }
 }
+||||||| merged common ancestors
+}
+=======
+}
+>>>>>>> conrad
