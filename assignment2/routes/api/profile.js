@@ -89,6 +89,7 @@ router.post(
         }
     }
 );
+
 // @route   GET api/profile
 // @desc    Get all profile
 // @access  Public
