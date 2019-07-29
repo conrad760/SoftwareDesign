@@ -5,7 +5,6 @@ const ProfileSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
-
     Address_1: {
         type: String,
         required: true
