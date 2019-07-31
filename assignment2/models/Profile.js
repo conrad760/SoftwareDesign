@@ -22,6 +22,7 @@ const ProfileSchema = new mongoose.Schema({
     },
     Zipcode: {
         type: Number,
+        minlength: 5,
         maxlength: 9,
         required: true
     }
