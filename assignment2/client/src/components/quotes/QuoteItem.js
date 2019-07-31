@@ -7,27 +7,14 @@ const QuoteItem = ({
     quote: { _id, gallons, delivery_add, delivery_date, price, total, avatar }
 }) => (
     <div>
-        <div class='quotes bg-white p-1 my-1'>
-            <div>
-                <a href='profile.html'>
-                    <img
-                        class='round-img'
-                        src='https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200'
-                        alt=''
-                    />
-                    <h4>John Doe</h4>
-                </a>
-            </div>
-            <div>
-                <p class='my-1'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Sint possimus corporis sunt necessitatibus! Minus nesciunt
-                    soluta suscipit nobis. Amet accusamus distinctio cupiditate
-                    blanditiis dolor? Illo perferendis eveniet cum cupiditate
-                    aliquam?
-                </p>
-            </div>
-        </div>
+        <tr class='bg-light'>
+            <td>1000</td>
+            <td>123 Calhoun Rd, Houston, TX 77204</td>
+            <td>06/03/19</td>
+            <td>$2.78</td>
+            <td>$2780.00</td>
+            <td>05/13/19</td>
+        </tr>
     </div>
 );
 
