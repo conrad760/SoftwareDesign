@@ -222,6 +222,40 @@
     color: #fff;
 }
 
+.round-img {
+    border-radius: 50%;
+}
+
+.quotes {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 2rem;
+    align-items: center;
+}
+
+.quotes > div:first-child {
+    text-align: center;
+}
+
+.quotes img {
+    width: 100px;
+}
+
+.quotes .quotes-date {
+    color: #aaa;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.quotes {
+    grid-template-columns: 1fr;
+}
+
+.quotes a,
+.quotes button {
+    padding: 0.3rem 0.4rem;
+}
+
 .dark-overlay {
     height: 100%;
     width: 100%;

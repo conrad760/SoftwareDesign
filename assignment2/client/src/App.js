@@ -8,6 +8,7 @@ import Alert from './components/layout/Alert';
 import Dashboard from './components/dashboard/dashboard';
 import CreateProfile from './components/profile-form/CreateProfile';
 import EditProfile from './components/profile-form/EditProfile';
+import Quotes from './components/quotes/Quotes';
 import PrivateRoute from './components/routing/PrivateRoute';
 import './App.css';
 // Redux
@@ -54,6 +55,11 @@ const App = () => {
                                 exact
                                 path='/edit-profile'
                                 component={EditProfile}
+                            />
+                            <PrivateRoute
+                                exact
+                                path='/quotes'
+                                component={Quotes}
                             />
                         </Switch>
                     </section>

@@ -62,6 +62,7 @@ const CreateProfile = ({ createProfile, history }) => {
                     <select
                         name='State'
                         value={State}
+                        defaultValue={'State'}
                         required
                         onChange={e => onChange(e)}
                     >

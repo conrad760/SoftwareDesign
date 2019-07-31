@@ -30,7 +30,7 @@ const EditProfile = ({
             State: loading || !profile.State ? '' : profile.State,
             Zipcode: loading || !profile.Zipcode ? '' : profile.Zipcode
         });
-    }, [loading]);
+    }, [loading, getCurrentProfile]);
 
     const onChange = e =>
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -71,6 +71,7 @@ const EditProfile = ({
                         <select
                             name='State'
                             value={State}
+                            defaultValue='State'
                             required
                             onChange={e => onChange(e)}
                         >
