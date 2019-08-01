@@ -140,7 +140,7 @@ const EditProfile = ({
                     </div>
                     <div className='form-group'>
                         <input
-                            type='text'
+                            type='number'
                             placeholder='Zip'
                             name='Zipcode'
                             value={Zipcode}
