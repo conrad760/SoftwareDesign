@@ -141,6 +141,16 @@ const EditProfile = ({
                     <div className='form-group'>
                         <input
                             type='text'
+                            placeholder='City'
+                            name='City'
+                            value={City}
+                            onChange={e => onChange(e)}
+                            required
+                        />
+                    </div>
+                    <div className='form-group'>
+                        <input
+                            type='number'
                             placeholder='Zip'
                             name='Zipcode'
                             value={Zipcode}
