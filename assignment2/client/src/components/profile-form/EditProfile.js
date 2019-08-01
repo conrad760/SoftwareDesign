@@ -68,6 +68,16 @@ const EditProfile = ({
                         />
                     </div>
                     <div className='form-group'>
+                        <input
+                            type='text'
+                            placeholder='City'
+                            name='City'
+                            value={City}
+                            onChange={e => onChange(e)}
+                            required
+                        />
+                    </div>
+                    <div className='form-group'>
                         <select
                             name='State'
                             value={State}
@@ -127,16 +137,6 @@ const EditProfile = ({
                             <option value='WI'>Wisconsin</option>
                             <option value='WY'>Wyoming</option>
                         </select>
-                    </div>
-                    <div className='form-group'>
-                        <input
-                            type='text'
-                            placeholder='City'
-                            name='City'
-                            value={City}
-                            onChange={e => onChange(e)}
-                            required
-                        />
                     </div>
                     <div className='form-group'>
                         <input
