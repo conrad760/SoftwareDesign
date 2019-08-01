@@ -9,6 +9,7 @@ import Dashboard from './components/dashboard/dashboard';
 import CreateProfile from './components/profile-form/CreateProfile';
 import EditProfile from './components/profile-form/EditProfile';
 import Quotes from './components/quotes/Quotes';
+import QuoteForm from './components/quotes/QuoteForm';
 import PrivateRoute from './components/routing/PrivateRoute';
 import './App.css';
 // Redux
@@ -60,6 +61,11 @@ const App = () => {
                                 exact
                                 path='/quotes'
                                 component={Quotes}
+                            />
+                            <PrivateRoute
+                                exact
+                                path='/create-quote'
+                                component={QuoteForm}
                             />
                         </Switch>
                     </section>

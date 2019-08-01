@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import QuoteItem from './QuoteItem';
+import QuoteForm from './QuoteForm';
 import { getQuotes } from '../../actions/quote';
 
 const Quotes = ({ getQuotes, quote: { quotes, loading } }) => {

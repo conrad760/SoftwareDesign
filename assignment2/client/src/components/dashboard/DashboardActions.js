@@ -9,6 +9,10 @@ const DashboardActions = () => {
                     <i className='fas fa-user-circle text-primary' />
                     Edit Profile
                 </Link>
+                <Link to='/create-quote' className='btn btn-light'>
+                    <i className='fas fa-water text-primary' />
+                    Create a quote
+                </Link>
             </div>
         </div>
     );
