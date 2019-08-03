@@ -14,7 +14,7 @@ export default function(state = initialState, action) {
         case GET_QUOTES:
             return {
                 ...state,
-                quotes: payload,
+                quotes: payload/*.filter(quotes => quotes.user === auth.user)*/,
                 loading: false
             };
         case ADD_QUOTE:

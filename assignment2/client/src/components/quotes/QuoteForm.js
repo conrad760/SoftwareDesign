@@ -2,7 +2,9 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { getCurrentProfile } from '../../actions/profile';
 import { addQuote } from '../../actions/quote';
+import Spinner from '../layout/Spinner';
 
 const QuoteForm = ({ addQuote, history }) => {
     const [formData, setFormData] = useState({
@@ -22,16 +24,17 @@ const QuoteForm = ({ addQuote, history }) => {
         e.preventDefault();
         QuoteForm(formData, history);
     };
+
     return (
         <Fragment>
             <div>
-                <h1 class='large text-primary'>Get a Quote!</h1>
-                <p class='lead'>
-                    <i class='fab fa-connectdevelop' />
+                <h1 className='large text-primary'>Get a Quote!</h1>
+                <p className='lead'>
+                    <i className='fab fa-connectdevelop' />
                     You can get a quote in less than a minute!
                 </p>
-                <form action='/' class='form'>
-                    <div class='form-group'>
+                <form action='/create-quote' className='form'>
+                    <div className='form-group'>
                         <input
                             type='text'
                             placeholder='Gallons needed'
@@ -39,7 +42,7 @@ const QuoteForm = ({ addQuote, history }) => {
                             required
                         />
                     </div>
-                    <div class='form-group'>
+                    <div className='form-group'>
                         <input
                             type='text'
                             placeholder='Delivery Address'
@@ -47,16 +50,16 @@ const QuoteForm = ({ addQuote, history }) => {
                             required
                         />
                     </div>
-                    <div class='form-group'>
+                    <div className='form-group'>
                         <input type='datetime' placeholder='Delivery Date' />
                     </div>
                     <input
                         type='submit'
                         value='Calculate'
-                        class='btn btn-primary'
+                        className='btn btn-primary'
                     />
                 </form>
-                <p class='my-1'>
+                <p className='my-1'>
                     Want to see your old Quotes?{' '}
                     <Link to='Quotes'>Quote History</Link>
                 </p>
@@ -68,8 +71,12 @@ const QuoteForm = ({ addQuote, history }) => {
 QuoteForm.propTypes = {
     addQuote: PropTypes.func.isRequired
 };
+const mapStateToProps = state => ({
+    auth: state.auth,
+    profile: state.profile
+});
 
 export default connect(
-    null,
-    { addQuote }
+    mapStateToProps,
+    { getCurrentProfile, addQuote }
 )(withRouter(QuoteForm));
