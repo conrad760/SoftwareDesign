@@ -66,26 +66,26 @@ router.get('/', auth, async (req, res) => {
     }
 });
 
-// @route   GET api/quote/:id
-// @desc    Get specific user quotes
-// @access  Private
-router.get('/:id', auth, async (req, res) => {
-    try {
-        const quote = await Quote.findById(req.params.id);
+// // @route   GET api/quote/:id
+// // @desc    Get specific user quotes
+// // @access  Private
+// router.get('/user/:user_id', auth, async (req, res) => {
+//     try {
+//         const quote = await Quote.findById(req.params.id);
 
-        if (!quote) {
-            return res.status(400).json({ msg: 'Quotes not found' });
-        }
+//         if (!quote) {
+//             return res.status(400).json({ msg: 'Quotes not found' });
+//         }
 
-        res.json(quote);
-    } catch (err) {
-        console.error(err.message);
-        if (err.kind === 'ObjectId') {
-            return res.status(400).json({ msg: 'Quotes not found' });
-        }
-        res.status(500).send('Server Error');
-    }
-});
+//         res.json(quote);
+//     } catch (err) {
+//         console.error(err.message);
+//         if (err.kind === 'ObjectId') {
+//             return res.status(400).json({ msg: 'Quotes not found' });
+//         }
+//         res.status(500).send('Server Error');
+//     }
+// });
 
 // @route   DELETE api/quote/:id
 // @desc    Delete quotes

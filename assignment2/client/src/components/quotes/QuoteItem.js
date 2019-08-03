@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Moments from 'react-moment';
 import { connect } from 'react-redux';
 
 const QuoteItem = ({
-    quote: { _id, gallons, delivery_add, delivery_date, price, total, avatar }
+    auth,
+    quote: { _id, user, gallons, delivery_add, delivery_date, price, total }
 }) => (
     <div>
-        <tr class='bg-light'>
+        <tr className='bg-light'>
             <td>1000</td>
             <td>123 Calhoun Rd, Houston, TX 77204</td>
             <td>06/03/19</td>
@@ -19,6 +19,7 @@ const QuoteItem = ({
 );
 
 QuoteItem.propTypes = {
+    auth: PropTypes.object.isRequired,
     quote: PropTypes.object.isRequired
 };
 

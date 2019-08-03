@@ -6,7 +6,12 @@ import QuoteItem from './QuoteItem';
 import QuoteForm from './QuoteForm';
 import { getQuotes } from '../../actions/quote';
 
-const Quotes = ({ getQuotes, quote: { quotes, loading } }) => {
+const Quotes = ({
+    getQuotes,
+    auth: { user },
+    profile: { profile },
+    quote: { quotes, loading }
+}) => {
     useEffect(() => {
         getQuotes();
     }, [getQuotes]);
@@ -31,11 +36,14 @@ const Quotes = ({ getQuotes, quote: { quotes, loading } }) => {
 
 Quotes.propTypes = {
     getQuotes: PropTypes.func.isRequired,
-    quote: PropTypes.object.isRequired
+    quote: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-    quote: state.quote
+    auth: state.auth,
+    quote: state.quote,
+    profile: state.profile
 });
 
 export default connect(
