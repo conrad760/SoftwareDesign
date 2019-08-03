@@ -54,13 +54,14 @@ Quotes.propTypes = {
     auth: PropTypes.object.isRequired,
     getCurrentProfile: PropTypes.func.isRequired,
     getQuotes: PropTypes.func.isRequired,
-    quote: PropTypes.object.isRequired
+    quote: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    profile: state.profile,
-    quote: state.quote
+    quote: state.quote,
+    profile: state.profile
 });
 
 export default connect(

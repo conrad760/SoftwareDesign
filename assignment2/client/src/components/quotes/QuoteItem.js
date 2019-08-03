@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Moments from 'react-moment';
-import { connect } from 'react-redux'; 
-import { getCurrentProfile } from '../../actions/profile';
+import { connect } from 'react-redux';
 
 const QuoteItem = ({
     auth: { user },
@@ -11,7 +9,7 @@ const QuoteItem = ({
 }) => (
     <div>
         <tr class='bg-light'>
-            <td>{user._id}</td>
+            <td>{user.name}</td>
             <td>123 Calhoun Rd, Houston, TX 77204</td>
             <td>06/03/19</td>
             <td>$2.78</td>
