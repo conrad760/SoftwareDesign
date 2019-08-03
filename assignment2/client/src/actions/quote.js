@@ -5,7 +5,7 @@ import { GET_QUOTES, QUOTE_ERROR, ADD_QUOTE } from './types';
 // Get quotes
 export const getQuotes = () => async dispatch => {
     try {
-        const res = await axios.get('/api/quote/:id');
+        const res = await axios.get('/api/quote');
 
         dispatch({
             type: GET_QUOTES,

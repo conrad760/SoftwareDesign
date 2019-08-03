@@ -20,8 +20,6 @@ function calcQuote(e) {
     if ((e.State = 'TX')) {
         locationFactor = 0.02;
     }
-    //history
-    //season
     return (price =
         e.gallons * fuel +
         fuel *
