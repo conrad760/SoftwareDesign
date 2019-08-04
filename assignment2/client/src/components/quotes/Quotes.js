@@ -31,11 +31,12 @@ const Quotes = ({
             <div className='quotes'>
                 <table>
                     <tr>
+                        <th>User</th> {/* testing */}
                         <th>Date</th>
                         <th>Gallons</th>
                         <th>State</th>
                         <th>Price/Gallon</th>
-                        <th>Address</th>
+                        {/* <th>Address</th> */}
                         <th>Total</th>
                     </tr>
                     <tbody>

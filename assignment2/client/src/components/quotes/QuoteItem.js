@@ -17,13 +17,21 @@ const QuoteItem = ({
     // first load loads empty so we wait for user and profile
     // to be filled
     return (
+        //                 <th>User</th> {/* testing */}
+        //                 <th>Date</th>
+        //                 <th>Gallons</th>
+        //                 <th>State</th>
+        //                 <th>Price/Gallon</th>
+        //                 <th>Address</th>
+        //                 <th>Total</th>
         <Fragment>
             <tr className='bg-light'>
                 <td>{user !== null ? user.name : ''} </td>
-                <td>{gallons} </td>
                 <td>{delivery_date} </td>
+                <td>{gallons} </td>
+                <td>{delivery_add} </td>
                 <td>{price} </td>
-                <td>{profile !== null ? profile.Address_1 : ''} </td>
+                {/* <td>{profile !== null ? profile.Address_1 : ''} </td> */}
                 <td>{total}</td>
             </tr>
         </Fragment>
