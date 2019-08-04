@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profile';
 import { addQuote } from '../../actions/quote';
-import Spinner from '../layout/Spinner';
 
 function calcQuote(e) {
     var fuel = 1.5;
@@ -13,24 +12,34 @@ function calcQuote(e) {
     var historyFactor = 0;
     var profitMargin = 0.1;
     var locationFactor = 0.04;
-    var price;
+
     if (e.gallons > 1000) {
         gallonsFactor = 0.02;
     }
     if ((e.State = 'TX')) {
         locationFactor = 0.02;
     }
-    return (price =
+    return (
         e.gallons * fuel +
         fuel *
             (profitMargin +
                 gallonsFactor +
                 seasonFactor +
                 historyFactor +
-                locationFactor));
+                locationFactor)
+    );
 }
 
-const QuoteForm = ({ addQuote, history }) => {
+const QuoteForm = ({
+    profile: { profile },
+    getCurrentProfile,
+    addQuote,
+    history
+}) => {
+    useEffect(() => {
+        getCurrentProfile();
+    }, [getCurrentProfile]);
+
     const [formData, setFormData] = useState({
         gallons: '',
         delivery_add: '',
@@ -39,9 +48,14 @@ const QuoteForm = ({ addQuote, history }) => {
         total: ''
     });
 
+    // for some reason if profile.Address_1 is alone then
+    // there will always be a null value first and
+    // the app will crash, this waits for profile
+    var waitingAddress = '';
+    if (profile !== null) waitingAddress = profile.Address_1;
+
     const { gallons, delivery_add, delivery_date, price, total } = formData;
 
-    console.log(formData);
     const onChange = e =>
         setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -59,12 +73,17 @@ const QuoteForm = ({ addQuote, history }) => {
                     <i className='fab fa-connectdevelop' />
                     You can get a quote in less than a minute!
                 </p>
-                <form action='/' className='form' onSubmit={e => onSubmit(e)}>
+                <form
+                    action='/quotes'
+                    className='form'
+                    onSubmit={e => onSubmit(e)}
+                >
                     <div className='form-group'>
                         <input
                             type='number'
                             placeholder='Gallons needed'
                             name='gallons'
+                            value={gallons}
                             onChange={e => onChange(e)}
                             required
                         />
@@ -72,8 +91,8 @@ const QuoteForm = ({ addQuote, history }) => {
                     <div className='form-group'>
                         <input
                             type='text'
-                            placeholder='Delivery Address'
                             name='delivery_add'
+                            value={waitingAddress}
                             onChange={e => onChange(e)}
                             required
                         />
@@ -101,10 +120,10 @@ const QuoteForm = ({ addQuote, history }) => {
 };
 
 QuoteForm.propTypes = {
-    addQuote: PropTypes.func.isRequired
+    addQuote: PropTypes.func.isRequired,
+    getCurrentProfile: PropTypes.func.isRequired
 };
 const mapStateToProps = state => ({
-    auth: state.auth,
     profile: state.profile
 });
 

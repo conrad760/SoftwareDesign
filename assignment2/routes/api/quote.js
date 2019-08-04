@@ -32,13 +32,13 @@ router.post(
 
         try {
             const user = await User.findById(req.user.id).select('-password');
-            // const profile = await Profile.findOne({ user: req.user.id });
+            const profile = await Profile.findOne({ user: req.user.id });
 
             const newQuote = new Quote({
                 user: req.user.id,
                 gallons: req.body.gallons,
-                // delivery_add: profile.Address_1,
-                delivery_date: new Date().now
+                delivery_add: req.body.delivery_add,
+                delivery_date: req.body.date
             });
 
             const quote = await newQuote.save();
@@ -50,6 +50,27 @@ router.post(
         }
     }
 );
+
+// @route   GET api/quote/me
+// @desc    Get specific user quotes
+// @access  Private
+router.get('/me', auth, async (req, res) => {
+    try {
+        const quote = await Quote.find({ user: req.user.id });
+
+        if (!quote) {
+            return res.status(400).json({ msg: 'Quotes not found' });
+        }
+
+        res.json(quote);
+    } catch (err) {
+        console.error(err.message);
+        if (err.kind === 'ObjectId') {
+            return res.status(400).json({ msg: 'Quotes not found' });
+        }
+        res.status(500).send('Server Error');
+    }
+});
 
 // @route   GET api/quote
 // @desc    Get all user quotes
@@ -65,27 +86,6 @@ router.get('/', auth, async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
-
-// // @route   GET api/quote/:id
-// // @desc    Get specific user quotes
-// // @access  Private
-// router.get('/user/:user_id', auth, async (req, res) => {
-//     try {
-//         const quote = await Quote.findById(req.params.id);
-
-//         if (!quote) {
-//             return res.status(400).json({ msg: 'Quotes not found' });
-//         }
-
-//         res.json(quote);
-//     } catch (err) {
-//         console.error(err.message);
-//         if (err.kind === 'ObjectId') {
-//             return res.status(400).json({ msg: 'Quotes not found' });
-//         }
-//         res.status(500).send('Server Error');
-//     }
-// });
 
 // @route   DELETE api/quote/:id
 // @desc    Delete quotes

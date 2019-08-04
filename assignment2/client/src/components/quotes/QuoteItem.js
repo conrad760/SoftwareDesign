@@ -1,23 +1,36 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { getCurrentProfile } from '../../actions/profile';
+import { getQuotes } from '../../actions/quote';
 
 const QuoteItem = ({
     auth: { user },
     profile: { profile },
     quote: { _id, gallons, delivery_add, delivery_date, price, total }
-}) => (
-    <div>
-        <tr class='bg-light'>
-            <td>{user.name}</td>
-            <td>123 Calhoun Rd, Houston, TX 77204</td>
-            <td>06/03/19</td>
-            <td>$2.78</td>
-            <td>$2780.00</td>
-            <td>05/13/19</td>
-        </tr>
-    </div>
-);
+}) => {
+    useEffect(() => {
+        getCurrentProfile();
+    }, [getCurrentProfile]);
+
+    // if statements below were for the same reason,
+    // first load loads empty so we wait for user and profile
+    // to be filled
+    return (
+        <Fragment>
+            <div>
+                <tr className='bg-light'>
+                    <td>{user !== null ? user.name : ''} | </td>
+                    <td>{gallons} | </td>
+                    <td>{delivery_date} | </td>
+                    <td>price | </td>
+                    <td>{profile !== null ? profile.Address_1 : ''} | </td>
+                    <td>TOTAL</td>
+                </tr>
+            </div>
+        </Fragment>
+    );
+};
 
 QuoteItem.propTypes = {
     getCurrentProfile: PropTypes.func.isRequired,
@@ -32,5 +45,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    {}
+    { getQuotes, getCurrentProfile }
 )(QuoteItem);

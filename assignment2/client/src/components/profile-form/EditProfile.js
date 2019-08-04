@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
@@ -145,8 +145,8 @@ const EditProfile = ({
                             name='Zipcode'
                             value={Zipcode}
                             onChange={e => onChange(e)}
-                            minlength='5'
-                            maxlength='9'
+                            minLength='5'
+                            maxLength='9'
                             required
                         />
                     </div>
@@ -154,7 +154,7 @@ const EditProfile = ({
                         <input
                             type='password'
                             placeholder='Confirm Password'
-                            minlength='8'
+                            minLength='8'
                             required
                         />
                     </div>

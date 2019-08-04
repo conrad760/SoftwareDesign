@@ -12,11 +12,11 @@ const QuoteSchema = new mongoose.Schema({
     },
     delivery_add: {
         // comes from user profile (address 1 or 2?)
-        type: String
+        type: String,
+        required: true
     },
     delivery_date: {
-        type: Date,
-        default: Date.now
+        type: Date
     },
     price: {
         type: Number
