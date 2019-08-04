@@ -19,7 +19,7 @@ export const getQuotes = () => async dispatch => {
 };
 
 // Add quote
-export const addQuote = formData => async dispatch => {
+export const addQuote = (formData, history) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -35,7 +35,15 @@ export const addQuote = formData => async dispatch => {
         });
 
         dispatch(setAlert('Quote created', 'success'));
+
+        history.push('/quotes');
     } catch (err) {
+        const errors = err.response.data.errors;
+
+        if (errors) {
+            errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+        }
+
         dispatch({
             type: QUOTE_ERROR,
             payload: {

@@ -51,8 +51,12 @@ const QuoteForm = ({
     // for some reason if profile.Address_1 is alone then
     // there will always be a null value first and
     // the app will crash, this waits for profile
-    var waitingAddress = '';
-    if (profile !== null) waitingAddress = profile.Address_1;
+    var primaryAddress = '';
+    var secondaryAddress = '';
+    if (profile !== null) {
+        primaryAddress = profile.Address_1;
+        secondaryAddress = profile.Address_2;
+    }
 
     const { gallons, delivery_add, delivery_date, price, total } = formData;
 
@@ -71,7 +75,7 @@ const QuoteForm = ({
                 <h1 className='large text-primary'>Get a Quote!</h1>
                 <p className='lead'>
                     <i className='fab fa-connectdevelop' />
-                    You can get a quote in less than a minute!
+                    You can get a quote in fdsafless than a minute!
                 </p>
                 <form
                     action='/quotes'
@@ -89,13 +93,28 @@ const QuoteForm = ({
                         />
                     </div>
                     <div className='form-group'>
-                        <input
+                        <select
+                            type='text'
+                            name='delivery_add'
+                            placeholder='Select your address'
+                            onChange={e => onChange(e)}
+                            required
+                        >
+                            <option>Select delivery address</option>
+                            <option value={primaryAddress}>
+                                {primaryAddress}
+                            </option>
+                            <option value={primaryAddress}>
+                                {primaryAddress}
+                            </option>
+                        </select>
+                        {/* <input
                             type='text'
                             name='delivery_add'
                             value={waitingAddress}
                             onChange={e => onChange(e)}
                             required
-                        />
+                        /> */}
                     </div>
                     <div className='form-group'>
                         <input
