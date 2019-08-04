@@ -56,6 +56,10 @@ const QuoteForm = ({
     if (profile !== null) {
         primaryAddress = profile.Address_1;
         secondaryAddress = profile.Address_2;
+
+        var secondExist = true;
+        if (secondaryAddress !== null) secondExist = false;
+        console.log('secondary Address exists? ', secondExist);
     }
 
     const { gallons, delivery_add, delivery_date, price, total } = formData;
@@ -75,7 +79,7 @@ const QuoteForm = ({
                 <h1 className='large text-primary'>Get a Quote!</h1>
                 <p className='lead'>
                     <i className='fab fa-connectdevelop' />
-                    You can get a quote in fdsafless than a minute!
+                    You can get a quote in less than a minute!
                 </p>
                 <form
                     action='/quotes'
@@ -104,9 +108,13 @@ const QuoteForm = ({
                             <option value={primaryAddress}>
                                 {primaryAddress}
                             </option>
-                            <option value={primaryAddress}>
-                                {primaryAddress}
-                            </option>
+                            {secondExist ? (
+                                <option value={secondaryAddress}>
+                                    {secondaryAddress}
+                                </option>
+                            ) : (
+                                <option disabled>No secondary address</option>
+                            )}
                         </select>
                         {/* <input
                             type='text'
