@@ -16,7 +16,7 @@ function calcQuote(e) {
     if (e.gallons > 1000) {
         gallonsFactor = 0.02;
     }
-    if ((e.delivery_add = 'TX')) {
+    if (e.delivery_add === 'TX') {
         console.log([e.delivery_add]);
         locationFactor = 0.02;
     }
@@ -102,6 +102,7 @@ const QuoteForm = ({
                             type='text'
                             name='delivery_add'
                             placeholder='Select your address'
+                            defaultValue={'State'}
                             onChange={e => onChange(e)}
                             required
                         >
