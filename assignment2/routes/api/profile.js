@@ -56,12 +56,13 @@ router.post(
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-        const { Address_1, City, State, Zipcode } = req.body;
+        const { Address_1, Address_2, City, State, Zipcode } = req.body;
         // Build Profile Object]
         const profileFeilds = {};
         profileFeilds.user = req.user.id;
 
         if (Address_1) profileFeilds.Address_1 = Address_1;
+        if (Address_2) profileFeilds.Address_2 = Address_2;
         if (City) profileFeilds.City = City;
         if (State) profileFeilds.State = State;
         if (Zipcode) profileFeilds.Zipcode = Zipcode;

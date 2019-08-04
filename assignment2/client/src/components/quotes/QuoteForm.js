@@ -58,7 +58,7 @@ const QuoteForm = ({
         secondaryAddress = profile.Address_2;
 
         var secondExist = true;
-        if (secondaryAddress !== null) secondExist = false;
+        if (secondaryAddress === null) secondExist = false;
         console.log('secondary Address exists? ', secondExist);
     }
 
