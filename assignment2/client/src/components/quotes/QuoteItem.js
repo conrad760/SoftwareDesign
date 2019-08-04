@@ -18,16 +18,14 @@ const QuoteItem = ({
     // to be filled
     return (
         <Fragment>
-            <div>
-                <tr className='bg-light'>
-                    <td>{user !== null ? user.name : ''} | </td>
-                    <td>{gallons} | </td>
-                    <td>{delivery_date} | </td>
-                    <td>price | </td>
-                    <td>{profile !== null ? profile.Address_1 : ''} | </td>
-                    <td>TOTAL</td>
-                </tr>
-            </div>
+            <tr className='bg-light'>
+                <td>{user !== null ? user.name : ''} </td>
+                <td>{gallons} </td>
+                <td>{delivery_date} </td>
+                <td>price </td>
+                <td>{profile !== null ? profile.Address_1 : ''} </td>
+                <td>TOTAL</td>
+            </tr>
         </Fragment>
     );
 };

@@ -29,9 +29,24 @@ const Quotes = ({
             {/*quotes form*/}
 
             <div className='quotes'>
-                {quotes.map(quote => (
-                    <QuoteItem key={quote._id} quote={quote} />
-                ))}
+                <table>
+                    <thread>
+                        <tr>
+                            <th>Date</th>
+                            <th>Gallons</th>
+                            <th>State</th>
+                            <th>Price/Gallon</th>
+                            <th>Address</th>
+                            <th>Total</th>
+                        </tr>
+                        <tbody>
+                            {' '}
+                            {quotes.map(quote => (
+                                <QuoteItem key={quote._id} quote={quote} />
+                            ))}
+                        </tbody>
+                    </thread>
+                </table>
             </div>
         </Fragment>
         // <Fragment>
