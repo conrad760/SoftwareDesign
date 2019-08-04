@@ -22,9 +22,9 @@ const QuoteItem = ({
                 <td>{user !== null ? user.name : ''} </td>
                 <td>{gallons} </td>
                 <td>{delivery_date} </td>
-                <td>price </td>
+                <td>{price} </td>
                 <td>{profile !== null ? profile.Address_1 : ''} </td>
-                <td>TOTAL</td>
+                <td>{total}</td>
             </tr>
         </Fragment>
     );

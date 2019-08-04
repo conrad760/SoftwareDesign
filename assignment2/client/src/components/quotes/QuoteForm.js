@@ -12,22 +12,21 @@ function calcQuote(e) {
     var historyFactor = 0;
     var profitMargin = 0.1;
     var locationFactor = 0.04;
-
+    var fuelFactor;
     if (e.gallons > 1000) {
         gallonsFactor = 0.02;
     }
-    if ((e.State = 'TX')) {
+    if ((e.delivery_add = 'TX')) {
         locationFactor = 0.02;
     }
-    return (
-        e.gallons * fuel +
+    fuelFactor =
         fuel *
-            (profitMargin +
-                gallonsFactor +
-                seasonFactor +
-                historyFactor +
-                locationFactor)
-    );
+        (profitMargin +
+            gallonsFactor +
+            seasonFactor +
+            historyFactor +
+            locationFactor);
+    return e.gallons * fuel + fuelFactor;
 }
 
 const QuoteForm = ({
@@ -69,8 +68,9 @@ const QuoteForm = ({
 
     const onSubmit = e => {
         e.preventDefault();
+        const total = calcQuote(formData);
+        setFormData({ ...formData, total });
         addQuote(formData, history);
-        console.log(calcQuote(formData));
     };
 
     return (

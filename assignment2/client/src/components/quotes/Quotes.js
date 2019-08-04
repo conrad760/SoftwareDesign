@@ -30,22 +30,20 @@ const Quotes = ({
 
             <div className='quotes'>
                 <table>
-                    <thread>
-                        <tr>
-                            <th>Date</th>
-                            <th>Gallons</th>
-                            <th>State</th>
-                            <th>Price/Gallon</th>
-                            <th>Address</th>
-                            <th>Total</th>
-                        </tr>
-                        <tbody>
-                            {' '}
-                            {quotes.map(quote => (
-                                <QuoteItem key={quote._id} quote={quote} />
-                            ))}
-                        </tbody>
-                    </thread>
+                    <tr>
+                        <th>Date</th>
+                        <th>Gallons</th>
+                        <th>State</th>
+                        <th>Price/Gallon</th>
+                        <th>Address</th>
+                        <th>Total</th>
+                    </tr>
+                    <tbody>
+                        {' '}
+                        {quotes.map(quote => (
+                            <QuoteItem key={quote._id} quote={quote} />
+                        ))}
+                    </tbody>
                 </table>
             </div>
         </Fragment>
