@@ -135,13 +135,6 @@ const CreateProfile = ({ createProfile, history }) => {
                         required
                     />
                 </div>
-                <div className='form-group'>
-                    <input
-                        type='password'
-                        placeholder='Confirm Password'
-                        minLength='8'
-                    />
-                </div>
                 <input
                     type='submit'
                     value='Update'

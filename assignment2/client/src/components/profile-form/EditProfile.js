@@ -154,14 +154,6 @@ const EditProfile = ({
                             required
                         />
                     </div>
-                    <div className='form-group'>
-                        <input
-                            type='password'
-                            placeholder='Confirm Password'
-                            minLength='8'
-                            required
-                        />
-                    </div>
                     <input
                         type='submit'
                         value='Update'

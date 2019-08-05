@@ -46,13 +46,20 @@ const Quotes = ({
                             ))}
                         </tbody>
                     </table>
+                    <div className='btn-primary'>
+                        <h4>Create another quote here.</h4>
+                        <br />
+                        <Link to='/create-quote' className='btn btn-primary'>
+                            <i className='fas fa-water' /> Create a quote
+                        </Link>
+                    </div>
                 </div>
             ) : (
                 <div>
                     <h4>You have no quotes yet! Create a quote here.</h4>
                     <br />
-                    <Link to='/create-quote' className='btn btn-light'>
-                        <i className='fas fa-water text-primary' />
+                    <Link to='/create-quote' className='btn btn-primary'>
+                        <i className='fas fa-water' />
                         Create a quote
                     </Link>
                 </div>
