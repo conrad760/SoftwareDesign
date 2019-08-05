@@ -3,9 +3,9 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profile';
-import { addQuote } from '../../actions/quote';
+import { addQuote, getQuotes } from '../../actions/quote';
 
-function calcFuelFactor(e) {
+function calcFuelFactor(e, quotes) {
     var fuel = 1.5;
     var gallonsFactor = 0.03;
     var seasonFactor = 0.03; // winter
@@ -30,7 +30,10 @@ function calcFuelFactor(e) {
         seasonFactor = 0.04;
     }
 
-    console.log('This is the month: ', delDate.getMonth());
+    if (quotes.length > 0) {
+        historyFactor = 0.1;
+        console.log('HERE WE ARE');
+    }
     return (
         fuel +
         fuel *
@@ -42,8 +45,8 @@ function calcFuelFactor(e) {
     );
 }
 
-function calcQuote(e) {
-    var fuelRate = calcFuelFactor(e);
+function calcQuote(e, quotes) {
+    var fuelRate = calcFuelFactor(e, quotes);
     return e.gallons * fuelRate;
 }
 
@@ -51,10 +54,12 @@ const QuoteForm = ({
     profile: { profile },
     getCurrentProfile,
     addQuote,
+    quote: { quotes },
     history
 }) => {
     useEffect(() => {
         getCurrentProfile();
+        getQuotes();
     }, [getCurrentProfile]);
 
     const [formData, setFormData] = useState({
@@ -85,8 +90,8 @@ const QuoteForm = ({
 
     const onSubmit = e => {
         e.preventDefault();
-        const total = calcQuote(formData);
-        const price = calcFuelFactor(formData);
+        const total = calcQuote(formData, quotes);
+        const price = calcFuelFactor(formData, quotes);
 
         setFormData({ ...formData });
         formData.price = price;
@@ -208,10 +213,12 @@ const QuoteForm = ({
 
 QuoteForm.propTypes = {
     addQuote: PropTypes.func.isRequired,
-    getCurrentProfile: PropTypes.func.isRequired
+    getCurrentProfile: PropTypes.func.isRequired,
+    quote: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
-    profile: state.profile
+    profile: state.profile,
+    quote: state.quote
 });
 
 export default connect(
