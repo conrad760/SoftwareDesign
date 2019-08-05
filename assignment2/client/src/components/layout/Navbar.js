@@ -7,7 +7,7 @@ import { getCurrentProfile } from '../../actions/profile';
 
 const Navbar = ({
     getCurrentProfile,
-    profile,
+    profile: { profile },
     auth: { isAuthenticated, loading },
     logout
 }) => {
@@ -72,7 +72,11 @@ const Navbar = ({
             </h1>
             {!loading && isAuthenticated && (
                 <Fragment>
-                    {profile !== null ? authLinkNoProfile : authLinks}
+                    {profile !== null ? (
+                        <Fragment>{authLinks}</Fragment>
+                    ) : (
+                        <Fragment>{authLinkNoProfile}</Fragment>
+                    )}
                 </Fragment>
             )}
             {!loading && !isAuthenticated && <Fragment>{guestLinks}</Fragment>}
@@ -88,6 +92,7 @@ Navbar.propTypes = {
 };
 
 const mapStateToProps = state => ({
+    profile: state.profile,
     auth: state.auth
 });
 
