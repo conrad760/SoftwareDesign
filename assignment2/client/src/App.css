@@ -280,6 +280,7 @@
 .form input[type='password'],
 .form input[type='date'],
 .form input[type='number'],
+.form input[type='dollar'],
 .form select,
 .form textarea {
     display: block;

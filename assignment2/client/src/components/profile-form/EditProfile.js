@@ -84,10 +84,10 @@ const EditProfile = ({
                             defaultValue='State'
                             required
                             onChange={e => onChange(e)}
-                        > 
-                            <option value='State' defaultValue>
+                        >
+                            <option selected disabled hidden>
                                 Select State
-                            </option> 
+                            </option>
 
                             <option value='AL'>Alabama</option>
                             <option value='AK'>Alaska</option>

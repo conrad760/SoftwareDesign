@@ -9,11 +9,11 @@ function calcFuelFactor(e, quotes) {
     var fuel = 1.5;
     var gallonsFactor = 0.03;
     var seasonFactor = 0.03; // winter
-    var historyFactor = 0;
+    var historyFactor = 0; // no quotes yet for user
     var profitMargin = 0.1;
-    var locationFactor = 0.04;
+    var locationFactor = 0.04; // out of state
+
     if (e.gallons > 1000) {
-        console.log([e.gallons]);
         gallonsFactor = 0.02;
     }
     if (e.delivery_add === 'TX') {
@@ -31,17 +31,25 @@ function calcFuelFactor(e, quotes) {
     }
 
     if (quotes.length > 0) {
-        historyFactor = 0.1;
-        console.log('HERE WE ARE');
+        historyFactor = 0.01;
     }
+
+    console.log([
+        locationFactor,
+        historyFactor,
+        gallonsFactor,
+        profitMargin,
+        seasonFactor
+    ]);
+
     return (
         fuel +
-        fuel *
-            (profitMargin +
-                gallonsFactor +
-                seasonFactor +
-                historyFactor +
-                locationFactor)
+        (locationFactor -
+            historyFactor +
+            gallonsFactor +
+            profitMargin +
+            seasonFactor) *
+            fuel
     );
 }
 
@@ -85,8 +93,9 @@ const QuoteForm = ({
 
     const { gallons, delivery_add, delivery_date, price, total } = formData;
 
-    const onChange = e =>
+    const onChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
     const onSubmit = e => {
         e.preventDefault();
@@ -97,6 +106,16 @@ const QuoteForm = ({
         formData.price = price;
         formData.total = total;
         addQuote(formData, history);
+    };
+
+    const onClick = e => {
+        e.preventDefault();
+
+        setFormData({
+            ...formData,
+            price: calcFuelFactor(formData, quotes).toFixed(2),
+            total: calcQuote(formData, quotes).toFixed(2)
+        });
     };
 
     return (
@@ -126,12 +145,10 @@ const QuoteForm = ({
                         <select
                             type='text'
                             name='delivery_add'
-                            placeholder='Select your address'
-                            defaultValue={'State'}
                             onChange={e => onChange(e)}
                             required
                         >
-                            <option value='State' defaultValue>
+                            <option value='' selected disabled hidden>
                                 Select State
                             </option>
                             <option value='AL'>Alabama</option>
@@ -195,9 +212,40 @@ const QuoteForm = ({
                             required
                         />
                     </div>
+                    <button
+                        type='button'
+                        value='price'
+                        name='price'
+                        className='btn btn-primary'
+                        onClick={e => onClick(e)}
+                    >
+                        Get Price
+                    </button>
+                    <div className='form-group'>
+                        <h1 className='text-primary'>Price</h1>
+                        <input
+                            type='number'
+                            name='price'
+                            placeholder='Check Price!'
+                            value={price}
+                            onChange={e => onChange(e)}
+                            readOnly
+                        />
+                    </div>
+                    <div className='form-group'>
+                        <h1 className='text-primary'>Total</h1>
+                        <input
+                            type='number'
+                            name='total'
+                            placeholder='Check Total!'
+                            value={total}
+                            onChange={e => onChange(e)}
+                            readOnly
+                        />
+                    </div>
                     <input
                         type='submit'
-                        value='Calculate'
+                        value='Get Quote'
                         className='btn btn-primary'
                         onSubmit={e => onSubmit(e)}
                     />
