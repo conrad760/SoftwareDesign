@@ -8,24 +8,13 @@ import { getQuotes } from '../../actions/quote';
 
 const QuoteItem = ({
     auth: { user },
-    profile: { profile },
-    quote: { _id, gallons, delivery_add, delivery_date, price, total }
+    quote: { gallons, delivery_add, delivery_date, price, total }
 }) => {
     useEffect(() => {
         getCurrentProfile();
     }, [getCurrentProfile]);
 
-    // if statements below were for the same reason,
-    // first load loads empty so we wait for user and profile
-    // to be filled
     return (
-        //                 <th>User</th> {/* testing */}
-        //                 <th>Date</th>
-        //                 <th>Gallons</th>
-        //                 <th>State</th>
-        //                 <th>Price/Gallon</th>
-        //                 <th>Address</th>
-        //                 <th>Total</th>
         <Fragment>
             <tr className='bg-light'>
                 <td>{user !== null ? user.name : ''} </td>
@@ -36,9 +25,8 @@ const QuoteItem = ({
                 </td>
                 <td>{gallons} </td>
                 <td>{delivery_add} </td>
-                <td>{price} </td>
-                {/* <td>{profile !== null ? profile.Address_1 : ''} </td> */}
-                <td>{total}</td>
+                <td>{'$' + price.toFixed(2)} </td>
+                <td>{'$' + total.toFixed(2)}</td>
             </tr>
         </Fragment>
     );
