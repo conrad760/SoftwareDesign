@@ -16,7 +16,8 @@ const QuoteSchema = new mongoose.Schema({
         required: true
     },
     delivery_date: {
-        type: Date
+        type: Date,
+        required: true
     },
     price: {
         type: Number

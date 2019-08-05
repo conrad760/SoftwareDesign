@@ -59,7 +59,6 @@ const QuoteForm = ({
 
         var secondExist = true;
         if (secondaryAddress === null) secondExist = false;
-        console.log('secondary Address exists? ', secondExist);
     }
 
     const { gallons, delivery_add, delivery_date, price, total } = formData;
@@ -165,8 +164,8 @@ const QuoteForm = ({
                     <div className='form-group'>
                         <input
                             type='date'
+                            name='delivery_date'
                             onChange={e => onChange(e)}
-                            // value={delivery_date}
                             required
                         />
                     </div>
