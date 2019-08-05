@@ -69,7 +69,10 @@ const QuoteForm = ({
     const onSubmit = e => {
         e.preventDefault();
         const total = calcQuote(formData);
-        setFormData({ ...formData, total });
+
+        setFormData({ ...formData });
+        formData.price = 1.5;
+        formData.total = total;
         addQuote(formData, history);
     };
 

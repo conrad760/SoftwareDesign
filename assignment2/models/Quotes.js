@@ -20,10 +20,12 @@ const QuoteSchema = new mongoose.Schema({
         required: true
     },
     price: {
-        type: Number
+        type: Number,
+        required: true
     },
     total: {
-        type: Number
+        type: Number,
+        required: true
     }
 });
 

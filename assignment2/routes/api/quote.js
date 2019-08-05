@@ -38,7 +38,9 @@ router.post(
                 user: req.user.id,
                 gallons: req.body.gallons,
                 delivery_add: req.body.delivery_add,
-                delivery_date: req.body.delivery_date
+                delivery_date: req.body.delivery_date,
+                price: req.body.price,
+                total: req.body.total
             });
 
             const quote = await newQuote.save();
