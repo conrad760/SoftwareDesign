@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
@@ -26,27 +27,35 @@ const Quotes = ({
             <p className='lead'>
                 <i className='fas fa-user'> Welcome to your quotes</i>
             </p>
-            {/*quotes form*/}
-
-            <div className='quotes'>
-                <table>
-                    <tr>
-                        <th>User</th> {/* testing */}
-                        <th>Date</th>
-                        <th>Gallons</th>
-                        <th>State</th>
-                        <th>Price/Gallon</th>
-                        {/* <th>Address</th> */}
-                        <th>Total</th>
-                    </tr>
-                    <tbody>
-                        {' '}
-                        {quotes.map(quote => (
-                            <QuoteItem key={quote._id} quote={quote} />
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+            {quotes.length !== 0 ? (
+                <div className='quotes'>
+                    <table>
+                        <tr>
+                            <th>User</th> {/* testing */}
+                            <th>Date</th>
+                            <th>Gallons</th>
+                            <th>State</th>
+                            <th>Price/Gallon</th>
+                            {/* <th>Address</th> */}
+                            <th>Total</th>
+                        </tr>
+                        <tbody>
+                            {' '}
+                            {quotes.map(quote => (
+                                <QuoteItem key={quote._id} quote={quote} />
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            ) : (
+                <div>
+                    <h4>You have no quotes yet! Create a quote here.</h4>
+                    <Link to='/create-quote' className='btn btn-light'>
+                        <i className='fas fa-water text-primary' />
+                        Create a quote
+                    </Link>
+                </div>
+            )}
         </Fragment>
         // <Fragment>
         //     <table>
