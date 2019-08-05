@@ -8,7 +8,7 @@ import { addQuote } from '../../actions/quote';
 function calcFuelFactor(e) {
     var fuel = 1.5;
     var gallonsFactor = 0.03;
-    var seasonFactor = 0.03;
+    var seasonFactor = 0.03; // winter
     var historyFactor = 0;
     var profitMargin = 0.1;
     var locationFactor = 0.04;
@@ -20,6 +20,17 @@ function calcFuelFactor(e) {
         console.log([e.delivery_add]);
         locationFactor = 0.02;
     }
+
+    // seasonal factor
+    var delDate = new Date(e.delivery_date);
+    if (delDate.getMonth() >= 8 || delDate.getMonth() <= 1) {
+        // winter
+    } else {
+        // summer
+        seasonFactor = 0.04;
+    }
+
+    console.log('This is the month: ', delDate.getMonth());
     return (
         fuel +
         fuel *
