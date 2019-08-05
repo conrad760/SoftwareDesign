@@ -1,6 +1,8 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Moment from 'react-moment';
+import moment from 'moment';
 import { getCurrentProfile } from '../../actions/profile';
 import { getQuotes } from '../../actions/quote';
 
@@ -27,7 +29,11 @@ const QuoteItem = ({
         <Fragment>
             <tr className='bg-light'>
                 <td>{user !== null ? user.name : ''} </td>
-                <td>{delivery_date} </td>
+                <td>
+                    <Moment format='MM/DD/YYYY'>
+                        {moment.utc(delivery_date)}
+                    </Moment>{' '}
+                </td>
                 <td>{gallons} </td>
                 <td>{delivery_add} </td>
                 <td>{price} </td>

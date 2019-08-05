@@ -33,15 +33,6 @@ const CreateProfile = ({ createProfile, history }) => {
                 <div className='form-group'>
                     <input
                         type='text'
-                        name='name'
-                        placeholder='name'
-                        onChange={e => onChange(e)}
-                        required
-                    />
-                </div>
-                <div className='form-group'>
-                    <input
-                        type='text'
                         placeholder='Address 1'
                         name='Address_1'
                         value={Address_1}
