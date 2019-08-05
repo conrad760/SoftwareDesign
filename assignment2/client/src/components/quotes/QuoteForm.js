@@ -106,6 +106,9 @@ const QuoteForm = ({
                             onChange={e => onChange(e)}
                             required
                         >
+                            <option value='State' defaultValue>
+                                Select State
+                            </option>
                             <option value='AL'>Alabama</option>
                             <option value='AK'>Alaska</option>
                             <option value='AZ'>Arizona</option>
@@ -163,6 +166,7 @@ const QuoteForm = ({
                         <input
                             type='date'
                             onChange={e => onChange(e)}
+                            // value={delivery_date}
                             required
                         />
                     </div>
@@ -170,6 +174,7 @@ const QuoteForm = ({
                         type='submit'
                         value='Calculate'
                         className='btn btn-primary'
+                        onSubmit={e => onSubmit(e)}
                     />
                 </form>
                 <p className='my-1'>
