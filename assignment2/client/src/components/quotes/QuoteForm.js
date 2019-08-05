@@ -5,29 +5,35 @@ import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profile';
 import { addQuote } from '../../actions/quote';
 
-function calcQuote(e) {
+function calcFuelFactor(e) {
     var fuel = 1.5;
     var gallonsFactor = 0.03;
     var seasonFactor = 0.03;
     var historyFactor = 0;
     var profitMargin = 0.1;
     var locationFactor = 0.04;
-    var fuelFactor;
     if (e.gallons > 1000) {
+        console.log([e.gallons]);
         gallonsFactor = 0.02;
     }
     if (e.delivery_add === 'TX') {
         console.log([e.delivery_add]);
         locationFactor = 0.02;
     }
-    fuelFactor =
+    return (
+        fuel +
         fuel *
-        (profitMargin +
-            gallonsFactor +
-            seasonFactor +
-            historyFactor +
-            locationFactor);
-    return e.gallons * fuel + fuelFactor;
+            (profitMargin +
+                gallonsFactor +
+                seasonFactor +
+                historyFactor +
+                locationFactor)
+    );
+}
+
+function calcQuote(e) {
+    var fuelRate = calcFuelFactor(e);
+    return e.gallons * fuelRate;
 }
 
 const QuoteForm = ({
@@ -51,15 +57,15 @@ const QuoteForm = ({
     // for some reason if profile.Address_1 is alone then
     // there will always be a null value first and
     // the app will crash, this waits for profile
-    var primaryAddress = '';
-    var secondaryAddress = '';
-    if (profile !== null) {
-        primaryAddress = profile.Address_1;
-        secondaryAddress = profile.Address_2;
+    // var primaryAddress = '';
+    // var secondaryAddress = '';
+    // if (profile !== null) {
+    //     primaryAddress = profile.Address_1;
+    //     secondaryAddress = profile.Address_2;
 
-        var secondExist = true;
-        if (secondaryAddress === null) secondExist = false;
-    }
+    //     var secondExist = true;
+    //     if (secondaryAddress === null) secondExist = false;
+    // }
 
     const { gallons, delivery_add, delivery_date, price, total } = formData;
 
@@ -69,9 +75,10 @@ const QuoteForm = ({
     const onSubmit = e => {
         e.preventDefault();
         const total = calcQuote(formData);
+        const price = calcFuelFactor(formData);
 
         setFormData({ ...formData });
-        formData.price = 1.5;
+        formData.price = price;
         formData.total = total;
         addQuote(formData, history);
     };
